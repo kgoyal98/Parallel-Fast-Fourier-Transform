@@ -12,16 +12,7 @@ complex<double> root_unity(int n, int k){
 	return complex<double>(cos(-M_PI*2*k/n), sin(-M_PI*2*k/n));
 }
 
-int main(){
-	int n;
-	cin>>n;
-	for(int i=0; i<n; i++){
-		int t,u; cin>>t>>u;
-		x[i] = complex<double>(t, u);
-	}
-	clock_t cpu_startTime, cpu_endTime;
-	double cpu_ElapseTime=0;
-	cpu_startTime = clock();
+void fft(int n){
 	for(int i=0; i<n; i++){
 		pout[i]=0;
 		pin[i]=1;
@@ -56,9 +47,25 @@ int main(){
 	for(int i=0; i<n; i++){
 		y[i] = temp[pout[i]*n + i];
 	}
-	cpu_endTime = clock();
-	cpu_ElapseTime = (cpu_endTime - cpu_startTime);
-  	cout<<cpu_ElapseTime;
+}
+
+int main(){
+	int n;
+	cin>>n;
 	for(int i=0; i<n; i++){
+		int t,u; cin>>t>>u;
+		x[i] = complex<double>(t, u);
 	}
+	clock_t cpu_startTime, cpu_endTime;
+	double cpu_ElapseTime=0;
+	cpu_startTime = clock();
+	
+	fft(n);
+
+	cpu_endTime = clock();
+	cpu_ElapseTime = double(cpu_endTime - cpu_startTime);
+  	cout<<cpu_ElapseTime*1000/CLOCKS_PER_SEC;
+	// for(int i=0; i<n; i++){
+	// 	cout<<y[i]<<endl;
+	// }
 }
