@@ -5,6 +5,7 @@ nvcc radix-2-parallel.cu -o radix-2-parallel
 g++ cooley-tukey-serial.cpp -o cooley-tukey-serial
 nvcc cooley-tukey-parallel.cu -o cooley-tukey-parallel
 nvcc cuFFT.cu -lcufft -o cufft
+mkdir test
 echo $'n\tradix-2-serial\tradix-2-parallel\tcuFFT'
 for i in {4..10}
 do
